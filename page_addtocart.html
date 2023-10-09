@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aussie Garments</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        body {
+            background-image: url('background.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+            margin: 0; 
+            padding: 0; 
+            font-family: Arial, sans-serif; 
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <h1>Aussie Garments</h1>
+        <div class="navbar">
+            <a href="page_home.html">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Cart</a>
+        </div>
+    </div>
+
+    <div class="product-container">
+        <div class="product">
+            <img src="Puffer Jacket.jpg" alt="Product 1">
+            <a href="page_productdetail.html"><h2>Graphic Fleece Pullover</h2></a>
+            <p>Size: Chest Circumference x Front Length
+                2XS - 93.0 x 70.0 cm
+                XS - 99.0 x 71.0 cm
+                S - 105.0 x 72.0 cm
+                M - 110.0 x 73.0 cm
+                L - 115.0 x 74.0 cm
+                XL - 121.0 x 75.0 cm
+                2XL - 127.0 x 76.0 cm
+                3XL - 133.0 x 77.0 cm
+                Product Code: 3611270-71</p>
+            <p>Price: $59.99</p>
+            <button class="add-to-cart" data-product="Graphic Fleece Pullover" data-price="59.99">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="product2.png" alt="Product 2">
+            <h2>Haven Tiered Mini Skirt</h2>
+            <p>Size: Waist Circumference
+                4 - 53.0 cm
+                6 - 58.0 cm
+                8 - 63.0 cm
+                10 - 68.0 cm
+                12 - 73.0 cm
+                14 - 79.0 cm
+                16 - 85.0 cm
+                Product Code: 2057277-03</p>
+            <p>Price: $24.99</p>
+            <button class="add-to-cart" data-product="Haven Tiered Mini Skirt" data-price="24.99">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="product3.png" alt="Product 3">
+            <h2>Taylor Strappy Mini Dress</h2>
+            <p>Size: Bust Circumference x Seat Circumference x Front Length
+                2XS - 70.0 x 93.0 x 64.0 cm
+                XS - 75.0 x 98.0 x 65.0 cm
+                S - 80.0 x 103.0 x 66.0 cm
+                M - 85.0 x 108.0 x 67.0 cm
+                L - 90.0 x 113.0 x 68.0 cm
+                XL - 95.0 x 118.0 x 69.0 cm
+                2XL - 100.0 x 123.0 x 70.0 cm
+                Product Code: 2056273-02</p>
+            <p>Price: $36.99</p>
+            <button class="add-to-cart" data-product="Taylor Strappy Mini Dress" data-price="36.99">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items">
+            
+        </ul>
+        <p>Total: <span id="cart-total">$0.00</span></p>
+        <a href="page_payment.html"><button id="checkout">Checkout</button></a>
+    </div>
+
+    <script>
+        
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        
+        const cartItemsList = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+
+        
+        const cart = [];
+
+       
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+               
+                const productName = button.getAttribute('data-product');
+                const productPrice = parseFloat(button.getAttribute('data-price'));
+
+                
+                const cartItem = { name: productName, price: productPrice };
+
+               
+                cart.push(cartItem);
+
+               
+                updateCartDisplay();
+
+               
+            });
+        });
+
+        function updateCartDisplay() {
+           
+            cartItemsList.innerHTML = '';
+
+            let totalPrice = 0;
+
+            
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItemsList.appendChild(listItem);
+
+                totalPrice += item.price;
+            });
+
+           
+            cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+       
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
