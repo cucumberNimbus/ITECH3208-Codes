@@ -24,19 +24,17 @@ function check_monitor_prod_errors()
         echo 'Product price: $' . $_SESSION["monitor_prod_price"] . '<br>';
         echo 'Product description: ' . $_SESSION["monitor_prod_description"] . '<br>';
         echo 'Product gender: ' . $_SESSION["monitor_prod_gender"] . '<br>';
-
-        if ($_SESSION["monitor_prod_stock"] == 1){
-            echo 'Product availability: In stock <br>';
-        } else if ($_SESSION["monitor_prod_stock"] == 0){
-            echo 'Product availability: Out of stock <br>';
-        }
+        echo 'Product availability: ' . $_SESSION["monitor_prod_stock"] . '<br>';
         echo 'Number of times product was bought: ' . $_SESSION["monitor_prod_bought"] . '<br>';
         echo 'Number of times product was viewed: ' . $_SESSION["monitor_prod_viewed"] . '<br>';
 
         echo 'Photo of the product: ' . '<br>';
-        $image = $_SESSION["monitor_prod_image"];
-        echo '<img src="data:image/jpeg;base64,'.base64_encode($image).'"/><br>';
-        var_dump($_SESSION["monitor_prod_image"]);
+        $image_location = $_SESSION["monitor_prod_image_location"];
+        if (file_exists($image_location)) {
+            echo "<img src='$image_location'>";
+        } else {
+            echo "Photo not found.";
+        }
 
         unset($_SESSION["monitor_prod_id"]);
         unset($_SESSION["monitor_prod_name"]);
@@ -47,5 +45,6 @@ function check_monitor_prod_errors()
         unset($_SESSION["monitor_prod_bought"]);
         unset($_SESSION["monitor_prod_viewed"]);
         unset($_SESSION["monitor_prod_image"]);
+        unset($_SESSION["monitor_prod_image_location"]);
     }
 }

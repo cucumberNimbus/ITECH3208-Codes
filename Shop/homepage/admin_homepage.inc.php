@@ -1,3 +1,7 @@
+<?php
+    include_once 'admin_function/show_alerts_view.inc.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,13 +22,21 @@
         <button>Remove Product</button>
     </form>
 
-    <form action="admin_function/in_stock_detail.inc.php" method="post">
-        <button>Mark item as out of stock</button>
-    </form>
-
     <form action="admin_function/monitor_product_detail.inc.php" method="post">
         <button>Monitor Product</button>
     </form>
+
+    <form action="admin_function/show_alerts.inc.php" method="post">
+        <button>Check alerts</button>
+    </form>
+
+    <form action="admin_function/add_employee_details.inc.php" method="post">
+        <button>Add employee account</button>
+    </form>
+
+    <?php
+        check_alerts();
+    ?>
 
 </body>
 

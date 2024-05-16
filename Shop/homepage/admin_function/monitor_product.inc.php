@@ -36,7 +36,7 @@
         $_SESSION["monitor_prod_bought"] = $result["number_bought"];
         $_SESSION["monitor_prod_viewed"] = $result["number_viewed"];
 
-        $_SESSION["monitor_prod_image"] = $result["image_data"];
+        $_SESSION["monitor_prod_image_location"] = $result["prod_image_location"];
         $_SESSION["monitor_prod_image_type"] = $result["image_type"];
 
         header("Location: monitor_product_detail.inc.php?getProdData=success");
