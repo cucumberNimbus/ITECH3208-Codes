@@ -33,6 +33,8 @@ require_once 'login_functions/login_view.inc.php';
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="pwd" placeholder="Password">
             <input type="text" name="email" placeholder="E-Mail">
+            <input type="text" name="delivery_address" placeholder="Delivery Address">
+            <input type="text" name="payment_details" placeholder="Payment Details">
             <button>Signup</button>
         </form>
 

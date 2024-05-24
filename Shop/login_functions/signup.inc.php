@@ -3,6 +3,8 @@
     $username = $_POST["username"];
     $pwd = $_POST["pwd"];
     $email = $_POST["email"];
+    $delivery_address = $_POST["delivery_address"];
+    $payment_details = $_POST["payment_details"];
 
     try {
 
@@ -13,7 +15,7 @@
         // ERROR HANDLERS
         $errors = [];
 
-        if (is_input_empty($username, $pwd, $email)) {
+        if (is_input_empty($username, $pwd, $email, $delivery_address, $payment_details)) {
             $errors["empty_input"] = "Fill in all fields!";
         }
         if (is_email_invalid($email)) {
@@ -35,7 +37,7 @@
             die();
         }
 
-        create_user($pdo, $pwd, $username, $email);
+        create_user($pdo, $pwd, $username, $email, $delivery_address, $payment_details);
 
         header("Location: ../index.php?signup=success");
 

@@ -1,0 +1,1 @@
+/**page where additional products details are shown */

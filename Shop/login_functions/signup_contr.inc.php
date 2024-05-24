@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-function is_input_empty(string $username, string $pwd, string $email)
+function is_input_empty(string $username, string $pwd, string $email, string $delivery_address, string $payment_details)
 {
-    if (empty($username) || empty($pwd) || empty($email)) {
+    if (empty($username) || empty($pwd) || empty($email) || empty($delivery_address || empty($payment_details))) {
         return true;
     } else {
         return false;
@@ -40,7 +40,7 @@ function is_email_registered(object $pdo, string $email)
     }
 }
 
-function create_user(object $pdo, string $pwd, string $username, string $email)
+function create_user(object $pdo, string $pwd, string $username, string $email, string $delivery_address, string $payment_details)
 {
-    set_user($pdo, $pwd, $username, $email);
+    set_user($pdo, $pwd, $username, $email, $delivery_address, $payment_details);
 }

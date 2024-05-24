@@ -41,6 +41,7 @@
         $_SESSION["user_username"] = htmlspecialchars($result["username"]);
         if ($user_type_employee == 0) {
             $_SESSION["user_type"] = "user";
+            $_SESSION["user_id"] = $result['id'];
         } else if ($user_type_employee == 1) {
             $_SESSION["user_type"] = "employee";
             header("Location: ../homepage/employee_homepage.inc.php");
@@ -53,7 +54,7 @@
         if ($username == "admin") {
             header("Location: ../homepage/admin_homepage.inc.php");
         } else {
-            header("Location: ../index.php?login=success");
+            header("Location: ../homepage/user_homepage/user_homepage.inc.php");
         }
 
         $pdo = null;
