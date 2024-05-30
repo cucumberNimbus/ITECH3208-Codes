@@ -12,8 +12,6 @@ require_once 'update_tracking_info_view.inc.php';
     <title>Update tracking details</title>
 </head>
 
-
-
 <body>
     <form action="../admin_homepage.inc.php" method="post">
         <button>Back</button>
@@ -22,7 +20,7 @@ require_once 'update_tracking_info_view.inc.php';
     <h3> Enter latest tracking update </h3>
 
     <form action="update_tracking_info.inc.php" method="post">
-        <input type="text" name="update_details" placeholder="Details" required>
+        <input type="text" name="tracking_update_text" placeholder="Details" required>
         <button>Update</button>
     </form>
     
