@@ -24,7 +24,7 @@
             header("Location: search_order_placed_details.inc.php");
             die();
         }
-         $_SESSION['order_update_id'] = $track_id;
+
         header("Location: update_tracking_info_details.inc.php");
 
         $pdo = null;
