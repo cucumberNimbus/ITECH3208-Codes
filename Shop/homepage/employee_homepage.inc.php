@@ -54,6 +54,10 @@
         <button>Add Credentials</button>
     </form>
 
+    <form action="employee_function/inbox_details.inc.php" method="post">
+        <button>Inbox</button>
+    </form>
+
     <form action="user_homepage/profile_settings/logout.inc.php" method="post">
         <button>Log Out</button>
     </form>
