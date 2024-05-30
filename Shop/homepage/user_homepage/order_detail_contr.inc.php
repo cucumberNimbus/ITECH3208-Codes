@@ -46,12 +46,25 @@ function show_shipping_address_guest(object $pdo, int $guest_order_id) {
     echo $order_details['user_address'];
 }
 
+function show_tracking_details(object $pdo) {
+    $user_id = $_SESSION['user_id'];
+    $order_details = get_order_details($pdo, $user_id);
+    echo $order_details['order_status'];
+}
+
+function show_tracking_details_guest(object $pdo, int $guest_order_id) {
+    $order_details = get_order_details_guest($pdo, $guest_order_id);
+    echo $order_details['order_status'];
+}
+
 function show_order_summary(object $pdo) {
     if ($_SESSION['user_type'] == "user"){
         $user_id = $_SESSION['user_id'];
         $order_details = get_order_details($pdo, $user_id);
     } else if ($_SESSION['user_type'] == "guest"){
-        $order_details = get_order_details_guest($pdo, $_SESSION['guest_order_id']);
+        $order_id_string = $_SESSION['guest_order_id'];
+        $order_id = intval($order_id_string);
+        $order_details = get_order_details_guest($pdo, $order_id);
     }
     $order_id = $order_details['order_id'];
     $purchased_items = get_ordered_item_details($pdo, $order_id); //details of each purchased item
