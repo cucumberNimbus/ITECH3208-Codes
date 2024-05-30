@@ -11,8 +11,44 @@ require_once 'dbh.inc.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
-</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light blue background color */
+            margin: 0;
+            padding: 0;
+        }
 
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #007bff; /* Blue navigation background color */
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        h5, h6 {
+            color: #007bff; /* Blue heading color */
+            margin-top: 20px;
+        }
+    </style>
+</head>
 <body>
     <nav>
         <ul>
@@ -43,5 +79,4 @@ require_once 'dbh.inc.php';
     <?php show_order_summary($pdo) ?>
 
 </body>
-
 </html>

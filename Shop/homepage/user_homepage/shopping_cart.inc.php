@@ -10,6 +10,47 @@ require_once 'dbh.inc.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light blue background color */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #007bff; /* Blue navigation background color */
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        h3, h4, h5 {
+            color: #007bff; /* Blue heading color */
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,11 +71,11 @@ require_once 'dbh.inc.php';
         </ul>
     </nav>
 
-    <?php if ($_SESSION['user_type'] == 'user'): //the layout for information will be changed for intuitive UI. This layout is for a registered user ?> 
+    <?php if ($_SESSION['user_type'] == 'user'): ?>
 
         <h3> Your shopping cart items: </h3>
         <?php
-        display_cart($pdo); //this function in shopping_cart_contr.inc.php will display all contents of their shopping cart and also add a place order button to confirm their order and send it to the database
+        display_cart($pdo);
         ?>
 
         <h4> Payment and delivery details:</h4>
@@ -44,7 +85,7 @@ require_once 'dbh.inc.php';
     
     <?php endif; ?>
 
-    <?php if ($_SESSION['user_type'] == 'guest'){ //the layout for information will be changed for intuitive UI. This layout is for a guest user
+    <?php if ($_SESSION['user_type'] == 'guest'){
         display_cart($pdo);
     }
     ?>

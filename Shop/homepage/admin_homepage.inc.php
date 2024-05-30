@@ -10,6 +10,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f5f5;
+        }
+        form {
+            margin: 10px 0;
+        }
+        button {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #4169e1;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,4 +81,3 @@
 </body>
 
 </html>
-

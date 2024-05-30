@@ -12,7 +12,56 @@ require_once 'add_to_cart_view.inc.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome User</title>
-    </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light blue background color */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #007bff; /* Blue navigation background color */
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        h3, p {
+            color: #007bff; /* Blue heading and paragraph color */
+        }
+
+        button {
+            background-color: #007bff; /* Blue button background color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
 <body>
 
     <nav>
@@ -45,5 +94,5 @@ require_once 'add_to_cart_view.inc.php';
         check_cart_status();
     ?>
 
-    </body>
-    </html>
+</body>
+</html>
