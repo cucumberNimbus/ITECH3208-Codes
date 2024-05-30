@@ -22,7 +22,7 @@ function is_input_empty(string $email, string $full_name)
     }
 }
 
-function add_credentials(object $pdo, string $username, string $email, string $full_name)
+function add_credentials(object $pdo, string $username, string $email, string $full_name, string $address, string $phone_number, string $dob)
 {
-    set_credentials($pdo, $username, $email, $full_name);
+    set_credentials($pdo, $username, $email, $full_name, $address, $phone_number, $dob);
 }

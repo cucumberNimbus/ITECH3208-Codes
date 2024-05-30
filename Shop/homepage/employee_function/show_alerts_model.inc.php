@@ -12,3 +12,13 @@ function get_low_stock_items(object $pdo)
     return $result;
 
 }
+
+function unread_messages(object $pdo)
+{
+    $query = "SELECT * FROM user_messages WHERE status = 'unread';";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}

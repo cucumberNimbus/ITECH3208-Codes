@@ -68,6 +68,9 @@ require_once 'enter_credentials_view.inc.php';
         <form action="enter_credentials.inc.php" method="post">
             <input type="text" name="email" placeholder="E-Mail" required>
             <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="text" name="address" placeholder="Residential Address" required>
+            <input type="text" name="phone_number" placeholder="Phone Number" required>
+            <input type="text" name="dob" placeholder="Date of birth (DD/MM/YYYY)" required>
             <button type="submit" name="action" value="add_credentials">Update Credentials</button>
         </form>
 

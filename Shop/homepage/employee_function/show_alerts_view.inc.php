@@ -22,7 +22,10 @@ function check_alerts()
 
         unset($_SESSION['low_stock_prod']);
 
-    } else {
+    } else if (isset($_SESSION['unread_messages'])){
+        echo "<br> You have new messages from customers!! Click on 'Inbox' to view details!";
+        }
+        else {
         echo"<br> Click on Check alerts to get alerts! ";
     }
 }

@@ -2,6 +2,9 @@
 
     $email = $_POST["email"];
     $full_name = $_POST["full_name"];
+    $address = $_POST['address'];
+    $phone_number = $_POST['phone_number'];
+    $dob = $_POST['dob'];
 
     try {
         require_once 'dbh.inc.php';
@@ -43,7 +46,7 @@
                 die();
             }
 
-            add_credentials($pdo, $username, $email, $full_name);
+            add_credentials($pdo, $username, $email, $full_name, $address, $phone_number, $dob);
 
             header("Location: enter_credentials_detail.inc.php?addCredentials=success");
 

@@ -15,6 +15,10 @@ try {
         $no_alerts = 0;
         $_SESSION['low_stock_prod'] = $low_items;
     }
+    if (unread_messages_exist($pdo)) {
+        $_SESSION['unread_messages'] = "yes";
+        $no_alerts = 0;
+    }
     
     if($no_alerts == 1) {
         header("Location: ../employee_homepage.inc.php?noAlert=yes");
