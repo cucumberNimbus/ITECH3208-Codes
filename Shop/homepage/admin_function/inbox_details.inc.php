@@ -69,46 +69,54 @@ require_once 'inbox_contr.inc.php';
         <h3>Inbox</h3>
 
         <?php 
-        // Codes to show unread messages 
-        $unread_messages = get_unread_messages($pdo);
-        if ($unread_messages) {
-            echo '<h4>Unread Messages</h4>';
+
+        // Codes to show unread and unactioned messages 
+        if (get_unread_unactioned_messages($pdo)) {
+            $unread_unactioned_messages = get_unread_unactioned_messages($pdo);
+
+            echo '<h4>Unread and Unactioned Messages</h4>';
             
-            foreach ($unread_messages as $message) {
+            foreach ($unread_unactioned_messages as $message) { 
                 echo '<div class="message">';
                 echo '<p><strong>User Email:</strong> ' . htmlspecialchars($message['email']) . '</p>';
                 echo '<p><strong>User Message:</strong> ' . htmlspecialchars($message['message']) . '</p>';
-                echo '<form action="mark_message_read_model.inc.php" method="post">';
+                echo '<form action="mark_message_model.inc.php" method="post">';
                 echo '<input type="hidden" name="message_id" value="' . htmlspecialchars($message['id']) . '">';
-                echo '<button type="submit">Mark Read</button>';
+                echo '<button type="submit" name="action" value="mark_read">Mark Read</button>';
+                echo '<button type="submit" name="action" value="mark_as_actioned">Mark as Actioned</button>';
                 echo '</form>';
                 echo '</div>';
             }
-        } else {
-            echo '<p>You are all caught up!!</p>';
         }
-        ?>
+        if (get_read_unactioned_messages($pdo)){         // Codes to show read and unactioned messages 
+            $read_unactioned_messages = get_read_unactioned_messages($pdo);
 
-        <?php 
-        // Codes to show all messages
-        if (isset($_GET["allMessages"]) && $_GET["allMessages"] === "yes") {
-            $read_messages = get_read_messages($pdo);
-            if ($read_messages) {
-                echo '<h4>Read Messages</h4>';
-                
-                foreach ($read_messages as $message) {
-                    echo '<div class="message">';
-                    echo '<p><strong>User Email:</strong> ' . htmlspecialchars($message['email']) . '</p>';
-                    echo '<p><strong>User Message:</strong> ' . htmlspecialchars($message['message']) . '</p>';
-                    echo '</div>';
-                }
-            } else {
-                echo '<p>There are no messages!!</p>';
+            echo '<h4>Read and Unactioned Messages</h4>';
+            
+            foreach ($read_unactioned_messages as $message) { 
+                echo '<div class="message">';
+                echo '<p><strong>User Email:</strong> ' . htmlspecialchars($message['email']) . '</p>';
+                echo '<p><strong>User Message:</strong> ' . htmlspecialchars($message['message']) . '</p>';
+                echo '<form action="mark_message_model.inc.php" method="post">';
+                echo '<input type="hidden" name="message_id" value="' . htmlspecialchars($message['id']) . '">';
+                echo '<button type="submit" name="action" value="mark_as_actioned">Mark as Actioned</button>';
+                echo '</form>';
+                echo '</div>';
             }
-        } else {
-            echo '<form action="inbox_details.inc.php?allMessages=yes" method="post">';
-            echo '<button type="submit">Show All</button>';
-            echo '</form>';
+        }
+        if (get_read_actioned_messages($pdo)){        // Codes to show read and actioned messages 
+            $read_actioned_messages = get_read_actioned_messages($pdo);
+
+            echo '<h4>Read and Actioned Messages</h4>';
+            
+            foreach ($read_actioned_messages as $message) { 
+                echo '<div class="message">';
+                echo '<p><strong>User Email:</strong> ' . htmlspecialchars($message['email']) . '</p>';
+                echo '<p><strong>User Message:</strong> ' . htmlspecialchars($message['message']) . '</p>';
+                echo '</div>';
+            }
+
+            echo '<h4> You are all caught up!!';
         }
         ?>
         <br>
