@@ -88,7 +88,7 @@ require_once 'inbox_contr.inc.php';
                 echo '</div>';
             }
         }
-        if (get_read_unactioned_messages($pdo)){         // Codes to show read and unactioned messages 
+        if (get_read_unactioned_messages($pdo)){         
             $read_unactioned_messages = get_read_unactioned_messages($pdo);
 
             echo '<h4>Read and Unactioned Messages</h4>';
@@ -104,7 +104,7 @@ require_once 'inbox_contr.inc.php';
                 echo '</div>';
             }
         }
-        if (get_read_actioned_messages($pdo)){        // Codes to show read and actioned messages 
+        if (get_read_actioned_messages($pdo)){       
             $read_actioned_messages = get_read_actioned_messages($pdo);
 
             echo '<h4>Read and Actioned Messages</h4>';
