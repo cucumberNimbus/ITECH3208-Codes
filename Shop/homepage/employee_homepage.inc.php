@@ -1,7 +1,3 @@
-<?php
-    require_once 'employee_function/show_alerts_view.inc.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +13,21 @@
             padding: 0;
             background-color: #f0f5f5;
         }
+
+        /* Container style */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
         form {
             margin: 10px 0;
         }
+
         button {
             background-color: #1e90ff;
             color: white;
@@ -30,41 +38,52 @@
             font-size: 16px;
             margin-right: 10px;
         }
+
         button:hover {
             background-color: #4169e1;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
         }
     </style>
 </head>
 
 <body>
 
-    <form action="employee_function/add_product_detail.inc.php" method="post">
-        <button>Add Product</button>
-    </form>
- 
-    <form action="employee_function/remove_product_detail.inc.php" method="post">
-        <button>Remove Product</button>
-    </form>
+    <h2>Employee Functionality</h2>
 
-    <form action="employee_function/show_alerts.inc.php" method="post">
-        <button>Check Alerts</button>
-    </form>
+    <div class="container">
+        <form action="employee_function/add_product_detail.inc.php" method="post">
+            <button>Add Product</button>
+        </form>
 
-    <form action="employee_function/enter_credentials_detail.inc.php" method="post">
-        <button>Add Credentials</button>
-    </form>
+        <form action="employee_function/remove_product_detail.inc.php" method="post">
+            <button>Remove Product</button>
+        </form>
 
-    <form action="employee_function/inbox_details.inc.php" method="post">
-        <button>Inbox</button>
-    </form>
+        <form action="employee_function/show_alerts.inc.php" method="post">
+            <button>Check Alerts</button>
+        </form>
 
-    <form action="user_homepage/profile_settings/logout.inc.php" method="post">
-        <button>Log Out</button>
-    </form>
+        <form action="employee_function/enter_credentials_detail.inc.php" method="post">
+            <button>Add Credentials</button>
+        </form>
 
-    <?php
+        <form action="employee_function/inbox_details.inc.php" method="post">
+            <button>Inbox</button>
+        </form>
+
+        <form action="user_homepage/profile_settings/logout.inc.php" method="post">
+            <button>Log Out</button>
+        </form>
+
+        <?php
+        require_once 'employee_function/show_alerts_view.inc.php';
         check_alerts();
-    ?>
+        ?>
+    </div>
 
 </body>
 
