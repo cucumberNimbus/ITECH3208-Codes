@@ -14,7 +14,7 @@ require_once 'dbh.inc.php';
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light blue background color */
+            background-color: #f0f8ff; 
             margin: 0;
             padding: 0;
         }
@@ -24,7 +24,7 @@ require_once 'dbh.inc.php';
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #007bff; /* Blue navigation background color */
+            background-color: #007bff; 
         }
 
         nav ul li {
@@ -40,11 +40,11 @@ require_once 'dbh.inc.php';
         }
 
         nav ul li a:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3; 
         }
 
         h5, h6 {
-            color: #007bff; /* Blue heading color */
+            color: #007bff; 
             margin-top: 20px;
         }
     </style>

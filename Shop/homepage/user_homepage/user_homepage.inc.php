@@ -42,12 +42,25 @@ require_once 'add_to_cart_view.inc.php';
         h3 {
             margin-top: 20px;
         }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(80px, 1fr)); 
+            gap: 20px;
+            margin: 20px;
+        }
         .product {
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
-            margin-bottom: 10px;
             background-color: #fff;
+            text-align: center;
+            max-width: 90px; 
+        }
+        .product img {
+            width: 100%;
+            max-width: 50px; 
+            height: auto;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -61,13 +74,11 @@ require_once 'add_to_cart_view.inc.php';
         <li><a href="#womens">All Women's Clothing</a></li>
         <?php
         session_start();
-        if ($_SESSION['user_type'] <> "guest") {
+        if ($_SESSION['user_type'] != "guest") {
             echo '<li><a href="profile_settings/profile_settings_homepage.inc.php">Profile</a></li>';
-        } elseif ($_SESSION['user_type'] == "guest") {
+        } else {
             echo '<li><a href="profile_settings/logout.inc.php">Signup/Login</a></li>';
         }
-        ?>
-        <?php
         if ($_SESSION['user_type'] == "guest") {
             echo '<li><a href="profile_settings/contact_admin_details.inc.php">Contact Admin</a></li>';
             echo '<li><a href="guest_track_order_detail.inc.php">Track your Order</a></li>';
@@ -80,16 +91,20 @@ require_once 'add_to_cart_view.inc.php';
 check_cart_status();
 ?>
 <h3 id="mens"> All men's clothing</h3>
-<?php
-$gender = "men";
-show_cloth_detail($pdo, $gender);
-?>
+<div class="product-grid">
+    <?php
+    $gender = "men";
+    show_cloth_detail($pdo, $gender);
+    ?>
+</div>
 
 <h3 id="womens"> All women's clothing </h3>
-<?php
-$gender = "women";
-show_cloth_detail($pdo, $gender);
-?>
+<div class="product-grid">
+    <?php
+    $gender = "women";
+    show_cloth_detail($pdo, $gender);
+    ?>
+</div>
 
 </body>
 </html>
