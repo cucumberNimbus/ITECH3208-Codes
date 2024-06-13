@@ -44,6 +44,7 @@
             $_SESSION["user_id"] = $result['id'];
         } else if ($user_type_employee == 1) {
             $_SESSION["user_type"] = "employee";
+            $_SESSION["user_id"] = $result['id'];
             header("Location: ../homepage/employee_homepage.inc.php");
             $pdo = null;
             $statement = null;
