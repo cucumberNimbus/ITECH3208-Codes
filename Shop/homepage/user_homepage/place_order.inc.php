@@ -39,14 +39,14 @@
             header("Location: shopping_cart.inc.php");
             die();
         }
-
+        
         if ($_SESSION['user_type'] == "user") {
             $order_id_string = add_order_placed($pdo, $user_id, $user_address, $total_price); //order details is stored in database and new order number is generated
         } else if ($_SESSION['user_type'] == "guest") {
             $order_id_string = add_order_placed_guest($pdo, $user_address, $total_price); //order details is stored in database and new order number is generated
         }
             $order_id = intval($order_id_string);
-            
+         
         foreach ($products as $product) {
             $prod_id = $product['id'];
             $quantity = $cart[$prod_id];

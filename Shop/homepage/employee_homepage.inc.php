@@ -12,9 +12,52 @@
             margin: 0;
             padding: 0;
             background-color: #f0f5f5;
+            display: flex;
         }
 
-        /* Container style */
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .sidebar a:hover {
+            background-color: #4169e1;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            width: calc(100% - 220px);
+        }
+
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -52,37 +95,29 @@
 
 <body>
 
-    <h2>Employee Functionality</h2>
+    <div class="sidebar">
+        <h2>Employee</h2>
+        <ul>
+            <li><a href="employee_function/add_product_detail.inc.php">Add Product</a></li>
+            <li><a href="employee_function/remove_product_detail.inc.php">Remove Product</a></li>
+            <li><a href="employee_function/update_tracking_info_details.inc.php">Update Tracking Information</a></li>
+            <li><a href="employee_function/show_alerts.inc.php">Check Alerts</a></li>
+            <li><a href="employee_function/update_employee_profile.inc.php">Update Profile</a></li>
+            <li><a href="employee_function/inbox_details.inc.php">Inbox</a></li>
+            <li><a href="user_homepage/profile_settings/logout.inc.php">Log Out</a></li>
+        </ul>
+    </div>
 
-    <div class="container">
-        <form action="employee_function/add_product_detail.inc.php" method="post">
-            <button>Add Product</button>
-        </form>
+    <div class="content">
+        <h2>Employee Functionality</h2>
 
-        <form action="employee_function/remove_product_detail.inc.php" method="post">
-            <button>Remove Product</button>
-        </form>
+        <div class="container">
 
-        <form action="employee_function/show_alerts.inc.php" method="post">
-            <button>Check Alerts</button>
-        </form>
-
-        <form action="employee_function/enter_credentials_detail.inc.php" method="post">
-            <button>Add Credentials</button>
-        </form>
-
-        <form action="employee_function/inbox_details.inc.php" method="post">
-            <button>Inbox</button>
-        </form>
-
-        <form action="user_homepage/profile_settings/logout.inc.php" method="post">
-            <button>Log Out</button>
-        </form>
-
-        <?php
-        require_once 'employee_function/show_alerts_view.inc.php';
-        check_alerts();
-        ?>
+            <?php
+            require_once 'employee_function/show_alerts_view.inc.php';
+            check_alerts();
+            ?>
+        </div>
     </div>
 
 </body>

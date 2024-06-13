@@ -41,3 +41,14 @@ function get_inventory_detail(object $pdo, int $item_id) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function get_tracking_updates(object $pdo, int $order_id)
+{
+    $query = "SELECT * FROM order_tracking_updates WHERE order_id = :order_id ORDER BY update_date DESC;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":order_id", $order_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
+    return $result;
+}

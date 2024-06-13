@@ -10,14 +10,16 @@ function get_user_address(object $pdo, int $user_id)
 
 function add_order_placed(object $pdo, int $user_id, string $user_address, float $total_price)
 {
-    $result = set_order_placed($pdo, $user_id, $user_address, $total_price);
-    return $result;
+    $order_id = set_order_placed($pdo, $user_id, $user_address, $total_price);
+    set_tracking_info($pdo, $order_id);
+    return $order_id;
 }
 
 function add_order_placed_guest(object $pdo, string $user_address, float $total_price)
 {
-    $result = set_order_placed_guest($pdo, $user_address, $total_price);
-    return $result;
+    $order_id = set_order_placed_guest($pdo, $user_address, $total_price);
+    set_tracking_info($pdo, $order_id);
+    return $order_id;
 }
 
 function add_order_details(object $pdo, int $order_id, int $prod_id, int $quantity, float $total)

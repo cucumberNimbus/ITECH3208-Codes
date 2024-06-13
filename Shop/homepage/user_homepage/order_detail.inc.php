@@ -74,7 +74,8 @@ require_once 'dbh.inc.php';
     <h6> Order date: <?php if ($_SESSION['user_type'] == "user"){show_order_date($pdo);} else if ($_SESSION['user_type'] == "guest") {show_order_date_guest($pdo, $_SESSION['guest_order_id']);}  ?></h6>
     <h6> Order amount: $ <?php if ($_SESSION['user_type'] == "user"){show_order_amount($pdo);} else if ($_SESSION['user_type'] == "guest") {show_order_amount_guest($pdo, $_SESSION['guest_order_id']);} ?></h6>
     <h6> Shipping address: <?php if ($_SESSION['user_type'] == "user"){show_shipping_address($pdo);} else if ($_SESSION['user_type'] == "guest") {show_shipping_address_guest($pdo, $_SESSION['guest_order_id']);} ?></h6>
-    <h6> Tracking_details: <?php if ($_SESSION['user_type'] == "user"){show_tracking_details($pdo);} else if ($_SESSION['user_type'] == "guest") {show_tracking_details_guest($pdo, $_SESSION['guest_order_id']);} ?></h6>
+    <h6> Tracking details: </h6>
+        <?php if ($_SESSION['user_type'] == "user"){show_tracking_details($pdo);} else if ($_SESSION['user_type'] == "guest") {show_tracking_details_guest($pdo, $_SESSION['guest_order_id']);} ?>
     <h6> Order summary: </h6>
     <?php show_order_summary($pdo) ?>
 

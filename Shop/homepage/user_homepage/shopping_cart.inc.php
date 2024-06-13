@@ -66,6 +66,9 @@ require_once 'dbh.inc.php';
                     echo '<li><a href="profile_settings/profile_settings_homepage.inc.php">Profile</a></li>';
                 } elseif ($_SESSION['user_type'] == "guest") {
                     echo '<li><a href="profile_settings/logout.inc.php">Signup/Login</a></li>';
+                    echo '<li><a href="profile_settings/contact_admin_details.inc.php">Contact Admin</a></li>';
+                    echo '<li><a href="guest_track_order_detail.inc.php">Track your Order</a></li>';
+
                 }
             ?>
         </ul>

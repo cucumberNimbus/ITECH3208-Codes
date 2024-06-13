@@ -63,11 +63,22 @@ function revise_product_details(object $pdo, int $prod_id, int $new_prod_stock, 
     $stmt->execute();
 }
 
-function get_cart_prod_detail(object $pdo, $placeholders, $cart) {
+function get_cart_prod_detail(object $pdo, $placeholders, $cart) 
+{
     $query = "SELECT * FROM prod_detail WHERE id IN ($placeholders)";
     $stmt = $pdo->prepare($query);
     $stmt->execute(array_keys($cart));
 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
+}
+
+function set_tracking_info(object $pdo, string $order_id_string)
+{
+    $order_id = intval($order_id_string);
+    $query = "INSERT INTO order_tracking_updates (order_id) VALUES (:order_id);";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":order_id", $order_id);
+    $stmt->execute();
+
 }

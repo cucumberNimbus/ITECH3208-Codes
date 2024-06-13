@@ -49,12 +49,27 @@ function show_shipping_address_guest(object $pdo, int $guest_order_id) {
 function show_tracking_details(object $pdo) {
     $user_id = $_SESSION['user_id'];
     $order_details = get_order_details($pdo, $user_id);
-    echo $order_details['order_status'];
+    $order_id = $order_details['order_id'];
+    $all_tracking_info = get_tracking_updates($pdo, $order_id);
+    foreach ($all_tracking_info as $tracking_info)
+    {
+        echo "<p>Status: " . $tracking_info['status'] . "</p>";
+        echo "<p>Comment: " . $tracking_info['comment'] . "</p>";
+        echo "<p>Update Date: " . $tracking_info['update_date'] . "</p>";
+        echo "<br>";
+    }
 }
 
 function show_tracking_details_guest(object $pdo, int $guest_order_id) {
-    $order_details = get_order_details_guest($pdo, $guest_order_id);
-    echo $order_details['order_status'];
+    $order_id = $guest_order_id;
+    $all_tracking_info = get_tracking_updates($pdo, $order_id);
+    foreach ($all_tracking_info as $tracking_info)
+    {
+        echo "<p>Status: " . $tracking_info['status'] . "</p>";
+        echo "<p>Comment: " . $tracking_info['comment'] . "</p>";
+        echo "<p>Update Date: " . $tracking_info['update_date'] . "</p>";
+        echo "<br>";
+    }
 }
 
 function show_order_summary(object $pdo) {
