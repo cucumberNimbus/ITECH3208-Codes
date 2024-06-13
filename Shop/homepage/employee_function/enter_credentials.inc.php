@@ -17,21 +17,7 @@
         if (isset($_POST["action"])) { 
             $action = $_POST["action"];
         }
-        if ($action == "check_credentials"){ //if the user clicked on "update credentials" button, the script to update their credentials will run
-
-            if(is_credentials_set($pdo, $username)){
-                $_SESSION["credentials_set"] = "yes";
-                
-                header("Location: enter_credentials_detail.inc.php");
-                die();
-            } else if (!is_credentials_set($pdo, $username)){
-                $_SESSION["credentials_set"] = "no";
-                
-                header("Location: enter_credentials_detail.inc.php");
-                die();
-            }
-
-        } else if ($action == "add_credentials"){ //if the user clicked on "check" button, the script to check if their credentials exists will run
+        if ($action == "add_credentials"){ //if the user clicked on "check" button, the script to check if their credentials exists will run
             
             $errors = []; //error handlers
 

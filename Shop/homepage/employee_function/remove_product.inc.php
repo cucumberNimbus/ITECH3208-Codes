@@ -1,22 +1,25 @@
 <?php
 
-    $prod_name_raw = $_POST["prod_name_input"];
-    $prod_name_raw_lcase = strtolower($prod_name_raw); //converts product name input to lowercase 
-    $search_name = str_replace(" ", "", $prod_name_raw_lcase); //removes spaces between words. This string will be used to search for the product in the database
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
 
     try {
         require_once 'dbh.inc.php';
         require_once 'remove_product_model.inc.php';
         require_once 'remove_product_contr.inc.php';
 
-        //error handlers
-
-        $errors = [];
-
-        if(!prod_exists($pdo, $search_name)){
-            $errors["no_prod"] = "Product name does not exist, please choose another!";
-        }
+        if ((!isset($_POST['prod_id_men']) || $_POST['prod_id_men'] == "not_selected") &&
+            (!isset($_POST['prod_id_women']) || $_POST['prod_id_women'] == "not_selected")) {
+            $errors["unknown_error"] = "Error, please try again!";
+        } else if (isset($_POST['prod_id_men']) && $_POST['prod_id_men'] != "not_selected") {
+            $prod_id_string = $_POST['prod_id_men'];
+            $prod_id = intval($prod_id_string);
+            $product = get_prod_details($pdo, $prod_id);
+        } else if (isset($_POST['prod_id_women']) && $_POST['prod_id_women'] != "not_selected") {
+            $prod_id_string = $_POST['prod_id_women'];
+            $prod_id = intval($prod_id_string);
+            $product = get_prod_details($pdo, $prod_id);
+    }
 
         session_start();
 
@@ -26,11 +29,11 @@
             header("Location: remove_product_detail.inc.php");
             die();
         }
-
+        $search_name = $product['search_name'];
         $image_location = get_image_location($pdo, $search_name);
 
-        if (unlink($image_location["prod_image_location"])){
-            remove_prod($pdo, $search_name);
+        if (unlink($image_location['prod_image_location'])){
+            remove_prod($pdo, $prod_id);
             header("Location: remove_product_detail.inc.php?removeProd=success");
 
             $pdo = null;
@@ -51,3 +54,4 @@
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
+}

@@ -16,6 +16,50 @@ require_once 'add_employee_view.inc.php';
             margin: 0;
             padding: 0;
             background-color: #f0f5f5;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .sidebar a:hover {
+            background-color: #4169e1;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            width: calc(100% - 220px);
         }
 
         form {
@@ -71,21 +115,38 @@ require_once 'add_employee_view.inc.php';
 
 <body>
 
-    <h3>Add Employee Details</h3>
-    <h5>Employees can later add further details from their profile page</h5>
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="add_product_detail.inc.php">Add Product</a></li>
+            <li><a href="add_product_inventory_detail.inc.php">Add Product Inventory</a></li>
+            <li><a href="remove_product_detail.inc.php">Remove Product</a></li>
+            <li><a href="monitor_product_detail.inc.php">Monitor Product</a></li>
+            <li><a href="show_alerts.inc.php">Check Alerts</a></li>
+            <li><a href="inbox_details.inc.php">Inbox</a></li>
+            <li><a href="add_employee_details.inc.php">Add Employee Account</a></li>
+            <li><a href="update_tracking_info_details.inc.php">Update Tracking Info</a></li>
+            <li><a href="../user_homepage/profile_settings/logout.inc.php">Log Out</a></li>
+        </ul>
+    </div>
 
-    <form action="add_employee.inc.php" method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="pwd" placeholder="Password">
-        <button>Signup</button>
-    </form>
-    <form action="../admin_homepage.inc.php" method="post">
-        <button class="back-button">Back</button>
-    </form>
+    <div class="content">
+        <h3>Add Employee Details</h3>
+        <h5>Employees can later add further details from their profile page</h5>
 
-    <?php
-    check_signup_errors();
-    ?>
+        <form action="add_employee.inc.php" method="post">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="pwd" placeholder="Password">
+            <button>Signup</button>
+        </form>
+        <form action="../admin_homepage.inc.php" method="post">
+            <button class="back-button">Back</button>
+        </form>
+
+        <?php
+        check_signup_errors();
+        ?>
+    </div>
 
 </body>
 

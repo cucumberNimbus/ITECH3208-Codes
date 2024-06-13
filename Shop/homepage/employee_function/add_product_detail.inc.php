@@ -9,14 +9,59 @@ require_once 'add_product_view.inc.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Admin</title>
+    <title>Welcome Employee</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
         }
+
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .sidebar a:hover {
+            background-color: #4169e1;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            width: calc(100% - 220px);
+        }
+
         .container {
             background: white;
             padding: 20px 40px;
@@ -26,12 +71,15 @@ require_once 'add_product_view.inc.php';
             margin: auto;
             text-align: center;
         }
+
         h3 {
             margin-bottom: 20px;
         }
+
         form {
             margin-bottom: 20px;
         }
+
         input, select, button {
             display: block;
             width: 100%;
@@ -41,18 +89,22 @@ require_once 'add_product_view.inc.php';
             border-radius: 5px;
             box-sizing: border-box;
         }
+
         button {
             background-color: #5cb85c;
             color: white;
             border: none;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #4cae4c;
         }
+
         .back-button {
             background-color: #f0ad4e;
         }
+
         .back-button:hover {
             background-color: #ec971f;
         }
@@ -60,34 +112,49 @@ require_once 'add_product_view.inc.php';
 </head>
 
 <body>
-    <div class="container">
 
-
-        <h3>Enter Product Details for Addition</h3>
-        
-        <form action="add_product.inc.php" method="post" enctype="multipart/form-data">
-            <input type="text" name="prod_name" placeholder="Product Name" required>
-            <input type="number" name="prod_price" placeholder="Product Price" step="0.01" required>
-            <input type="text" name="prod_description" placeholder="Product Description" maxlength="200" required>
-            
-            <label for="prod_gender">Is the product for Men or Women</label>
-            <select id="prod_gender" name="prod_gender" required>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
-            </select>
-            <input type="file" name="file" accept="image/*" required>
-            <input type="number" name="in_stock" placeholder="Quantity to add" required>
-
-            <button type="submit">Upload</button>
-        </form>
-
-        <?php
-            check_prod_add_errors();
-        ?>
-                <form action="../employee_homepage.inc.php" method="post">
-            <button type="button" class="back-button" onclick="window.location.href='../employee_homepage.inc.php'">Back</button>
-        </form>
+    <div class="sidebar">
+        <h2>Employee</h2>
+        <ul>
+            <li><a href="add_product_detail.inc.php">Add Product</a></li>
+            <li><a href="remove_product_detail.inc.php">Remove Product</a></li>
+            <li><a href="update_tracking_info_details.inc.php">Update Tracking Information</a></li>
+            <li><a href="show_alerts.inc.php">Check Alerts</a></li>
+            <li><a href="update_employee_profile.inc.php">Update Profile</a></li>
+            <li><a href="inbox_details.inc.php">Inbox</a></li>
+            <li><a href="../user_homepage/profile_settings/logout.inc.php">Log Out</a></li>
+        </ul>
     </div>
+
+    <div class="content">
+        <div class="container">
+            <h3>Enter Product Details for Addition</h3>
+            
+            <form action="add_product.inc.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="prod_name" placeholder="Product Name" required>
+                <input type="number" name="prod_price" placeholder="Product Price" step="0.01" required>
+                <input type="text" name="prod_description" placeholder="Product Description" maxlength="200" required>
+                
+                <label for="prod_gender">Is the product for Men or Women</label>
+                <select id="prod_gender" name="prod_gender" required>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                </select>
+                <input type="file" name="file" accept="image/*" required>
+                <input type="number" name="in_stock" placeholder="Quantity to add" required>
+
+                <button type="submit">Upload</button>
+            </form>
+
+            <?php
+                check_prod_add_errors();
+            ?>
+            <form action="../employee_homepage.inc.php" method="post">
+                <button type="button" class="back-button" onclick="window.location.href='../employee_homepage.inc.php'">Back</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 
 </html>

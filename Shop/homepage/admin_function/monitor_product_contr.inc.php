@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-function prod_exists(object $pdo, string $search_name)
+function get_prod_details(object $pdo, int $prod_id)
 {
-    if (get_prod_name($pdo, $search_name)) {
-        return true;
-    } else {
-        return false;
-    }
+    $product = fetch_prod_details($pdo, $prod_id);
+    return $product;
+} 
+
+function get_all_products_men(object $pdo)
+{
+    $all_products = fetch_all_products_men($pdo);
+    return $all_products;
 }
 
-function get_prod_data(object $pdo, string $search_name)
+function get_all_products_women(object $pdo)
 {
-    $result = retrieve_prod_data($pdo, $search_name);
-    return $result;
+    $all_products = fetch_all_products_women($pdo);
+    return $all_products;
 }

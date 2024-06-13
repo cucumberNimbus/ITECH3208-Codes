@@ -1,18 +1,18 @@
 <?php
-require_once 'remove_product_model.inc.php';
-require_once 'remove_product_view.inc.php';
-require_once 'remove_product_contr.inc.php';
+require_once 'update_employee_profile_contr.inc.php';
+require_once 'update_employee_profile_view.inc.php';
 require_once 'dbh.inc.php';
+session_start();
+$emp_id = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remove Product</title>
+    <title>Welcome Employee</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,38 +70,38 @@ require_once 'dbh.inc.php';
             padding: 20px 40px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 600px;
             margin: auto;
+        }
+
+        h2, h3 {
             text-align: center;
         }
 
-        h3 {
-            margin-bottom: 20px;
+        p {
+            margin: 10px 0;
         }
 
         form {
-            margin-bottom: 20px;
-        }
-
-        input, select, button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+            margin-top: 20px;
+            text-align: center;
         }
 
         button {
-            background-color: #d9534f;
+            background-color: #5cb85c;
             color: white;
             border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         button:hover {
-            background-color: #c9302c;
+            background-color: #4cae4c;
         }
 
         .back-button {
@@ -113,7 +113,6 @@ require_once 'dbh.inc.php';
         }
     </style>
 </head>
-
 <body>
 
     <div class="sidebar">
@@ -131,43 +130,32 @@ require_once 'dbh.inc.php';
 
     <div class="content">
         <div class="container">
+            <h2>Update Employee Profile</h2>
+            <h3>Your current credentials:</h3>
+            <p>Username: <?php show_emp_username($pdo, $emp_id); ?></p>
+            <p>Email: <?php show_emp_email($pdo, $emp_id); ?></p>
+            <p>Full name: <?php show_emp_full_name($pdo, $emp_id); ?></p>
+            <p>Address: <?php show_emp_address($pdo, $emp_id); ?></p>
+            <p>Phone number: <?php show_emp_phone_number($pdo, $emp_id); ?></p>
+            <p>Date of birth: <?php show_emp_dob($pdo, $emp_id); ?></p>
 
-            <h3>Enter Product Name for Deletion</h3>
-            
-            <form action="remove_product.inc.php" method="POST">
-                <h4> Men's Products </h4>
-                <select name="prod_id_men">
-                    <option value="not_selected">--Select a product--</option>
-                    <?php
-                    $products = get_all_products_men($pdo);
-                    foreach ($products as $product_item) {
-                        echo "<option value=\"{$product_item['id']}\">{$product_item['prod_name']}</option>";
-                    }
-                    ?>
-                </select>
+            <?php show_na_message($pdo, $emp_id); ?>
 
-                <h4>Women's Products </h4>
-                <select name="prod_id_women">
-                    <option value="not_selected">--Select a product--</option>
-                    <?php
-                    $products = get_all_products_women($pdo);
-                    foreach ($products as $product_item) {
-                        echo "<option value=\"{$product_item['id']}\">{$product_item['prod_name']}</option>";
-                    }
-                    ?>
-                </select>
-                <button type="submit">Delete</button>
+            <form action="enter_credentials_detail.inc.php" method="post">
+                <button>Update Details</button>
             </form>
 
-            <?php
-            check_prod_remove_errors();
-            ?>
+            <form action="change_password_detail.inc.php" method="post">
+                <button>Change Password</button>
+            </form>
+
             <form action="../employee_homepage.inc.php" method="post">
-                <button type="button" class="back-button" onclick="window.location.href='../employee_homepage.inc.php'">Back</button>
+                <button type="submit" class="back-button">Back</button>
             </form>
+
+            <?php show_profile_alert(); ?>
         </div>
     </div>
 
 </body>
-
 </html>

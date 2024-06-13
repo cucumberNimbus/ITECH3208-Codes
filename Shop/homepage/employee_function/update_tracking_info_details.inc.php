@@ -19,19 +19,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $status = $_POST['status'];
             $comment = $_POST['comment'] ?? 'No comment yet';
 
-            session_start();
+            session_start(); 
 
             $updated_by = ($_SESSION['user_username']);
             add_order_update($pdo, $order_id, $status, $comment, $updated_by);
-            $order_details = get_order_details($pdo, $order_id);
-            $order_updates = get_order_updates($pdo, $order_id);
+            $order_details = get_order_details($pdo, $order_id); 
+            $order_updates = get_order_updates($pdo, $order_id); 
         }
     }
 
     if (isset($_POST['mark_as_delivered'])) {
         $order_id = intval($_POST['mark_as_delivered']);
         mark_order_as_delivered($pdo, $order_id);
-        $all_orders = get_all_orders($pdo);
+        $all_orders = get_all_orders($pdo); 
     }
 }
 ?>
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f0f8ff; /* Light blue background color */
             margin: 0;
             padding: 0;
             display: flex;
@@ -96,68 +96,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: calc(100% - 220px);
         }
 
-        .container {
-            background: white;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: auto;
-            text-align: center;
+        button {
+            background-color: #007bff; /* Blue button background color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        h3 {
-            margin-bottom: 20px;
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
         }
 
         form {
             margin-bottom: 20px;
         }
 
-        input, select, button {
-            display: block;
-            width: 100%;
+        input[type="text"] {
             padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box;
+            border: 1px solid #ccc;
+            width: 300px;
         }
 
-        button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            cursor: pointer;
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff; /* Blue border color on focus */
         }
 
-        button:hover {
-            background-color: #c9302c;
-        }
-
-        .back-button {
-            background-color: #f0ad4e;
-        }
-
-        .back-button:hover {
-            background-color: #ec971f;
+        h3 {
+            color: #007bff; /* Blue heading color */
         }
     </style>
 </head>
 
 <body>
 
-<div class="sidebar">
-        <h2>Admin</h2>
+    <div class="sidebar">
+        <h2>Employee</h2>
         <ul>
             <li><a href="add_product_detail.inc.php">Add Product</a></li>
-            <li><a href="add_product_inventory_detail.inc.php">Add Product Inventory</a></li>
             <li><a href="remove_product_detail.inc.php">Remove Product</a></li>
-            <li><a href="monitor_product_detail.inc.php">Monitor Product</a></li>
+            <li><a href="update_tracking_info_details.inc.php">Update Tracking Information</a></li>
             <li><a href="show_alerts.inc.php">Check Alerts</a></li>
+            <li><a href="update_employee_profile.inc.php">Update Profile</a></li>
             <li><a href="inbox_details.inc.php">Inbox</a></li>
-            <li><a href="add_employee_details.inc.php">Add Employee Account</a></li>
-            <li><a href="update_tracking_info_details.inc.php">Update Tracking Info</a></li>
             <li><a href="../user_homepage/profile_settings/logout.inc.php">Log Out</a></li>
         </ul>
     </div>
@@ -166,42 +150,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h3>Pick an order to update tracking info</h3>
 
         <ul>
-            <?php
-            if (empty($all_orders)) {
-                echo "<p>No orders to show!</p>";
-            } else {
-                foreach ($all_orders as $order) : ?>
-                    <li>
-                        <?php
-                        if ($order['delivery_status'] != 'in progress' && $delivered_orders_heading == 0) {
+        <?php 
+        if (!get_all_orders($pdo)){
+            echo "No orders to show!";
+        }
+        foreach ($all_orders as $order): ?>  <!-- shows a list of all orders made -->
+                <li>
+                <?php 
+                    if ($order['delivery_status'] != 'in progress'){
+                        if ($delivered_orders_heading == 0){
                             echo "<h3>Delivered orders:</h3>";
                             $delivered_orders_heading = 1;
                         }
-                        ?>
-                        Order ID: <?php echo htmlspecialchars($order['order_id']); ?> <br>
-                        User ID: <?php echo $order['user_id'] == null ? 'Guest' : htmlspecialchars($order['user_id']); ?> <br>
-                        Total Price: $<?php echo htmlspecialchars($order['total_price']); ?>
-                        <?php if ($order['delivery_status'] == 'in progress') : ?>
-                            <form method="POST" action="" style="display:inline;">
-                                <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
-                                <button type="submit">Update</button>
-                            </form>
-                            <form method="POST" action="" style="display:inline;">
-                                <input type="hidden" name="mark_as_delivered" value="<?php echo $order['order_id']; ?>">
-                                <button type="submit">Delivered</button>
-                            </form>
-                            <br><br>
-                        <?php else : ?>
-                            <span><h5>Delivered</h5></span>
-                        <?php endif; ?>
-                    </li>
-                <?php endforeach;
-            } ?>
+                    }
+                ?>
+                    Order ID: <?php echo htmlspecialchars($order['order_id']); ?> <br>
+                    User ID: <?php 
+                    if ($order['user_id'] == null){
+                        echo "Guest";
+                    } else {
+                    echo htmlspecialchars($order['user_id']);
+                    } ?>  <br>
+                    Total Price: $<?php echo htmlspecialchars($order['total_price']); ?>
+                    <?php if ($order['delivery_status'] == 'in progress'): ?>
+                        <form method="POST" action="" style="display:inline;">
+                            <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                            <button type="submit">Update</button>
+                        </form>
+                        <form method="POST" action="" style="display:inline;">
+                            <input type="hidden" name="mark_as_delivered" value="<?php echo $order['order_id']; ?>">
+                            <button type="submit">Delivered</button>
+                        </form>
+                        <br><br>
+                    <?php else: ?>
+                        <span><h5>Delivered</h5></span>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
         </ul>
 
-        <?php if ($order_details) : ?>
+        <?php if ($order_details): ?>  <!-- shows current or updates order details of an order has been selected -->
             <h2>Order Details for Order #<?php echo htmlspecialchars($order_details['order_id']); ?></h2>
-            <p>User ID: <?php echo $order_details['user_id'] == null ? 'Guest' : htmlspecialchars($order_details['user_id']); ?></p>
+            <p>User ID: <?php if ($order_details['user_id'] == null){
+                        echo "Guest";
+                    } else {
+                    echo htmlspecialchars($order['user_id']);
+                    } ?></p>
             <p>User Address: <?php echo htmlspecialchars($order_details['user_address']); ?></p>
             <p>Order Date: <?php echo htmlspecialchars($order_details['order_date']); ?></p>
             <p>Status: <?php echo htmlspecialchars($order_details['delivery_status']); ?></p>
@@ -209,11 +203,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <h3>Order Updates</h3>
             <ul>
-                <?php foreach ($order_updates as $update) : ?>
+                <?php foreach ($order_updates as $update): ?>
                     <li>
                         <strong><?php echo htmlspecialchars($update['update_date']); ?>:</strong>
                         <?php echo htmlspecialchars($update['status']); ?> - <?php echo htmlspecialchars($update['comment']); ?>
-                        <strong>Updated by: <?php echo htmlspecialchars($update['updated_by']); ?></strong>
+                        <strong>Updated by: <?php echo htmlspecialchars($update['updated_by']);?></strong>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -238,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         <?php endif; ?>
 
-        <form action="../admin_homepage.inc.php" method="post">
+        <form action="../employee_homepage.inc.php" method="post">
             <button>Back</button>
         </form>
     </div>

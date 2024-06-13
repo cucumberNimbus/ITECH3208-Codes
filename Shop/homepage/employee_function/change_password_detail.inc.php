@@ -1,8 +1,5 @@
 <?php
-require_once 'remove_product_model.inc.php';
-require_once 'remove_product_view.inc.php';
-require_once 'remove_product_contr.inc.php';
-require_once 'dbh.inc.php';
+require_once 'change_password_view.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +9,7 @@ require_once 'dbh.inc.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remove Product</title>
+    <title>Change Password</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,25 +62,15 @@ require_once 'dbh.inc.php';
             width: calc(100% - 220px);
         }
 
-        .container {
-            background: white;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: auto;
-            text-align: center;
-        }
-
-        h3 {
-            margin-bottom: 20px;
+        h4 {
+            color: #007bff;
         }
 
         form {
             margin-bottom: 20px;
         }
 
-        input, select, button {
+        input, button {
             display: block;
             width: 100%;
             padding: 10px;
@@ -94,14 +81,14 @@ require_once 'dbh.inc.php';
         }
 
         button {
-            background-color: #d9534f;
+            background-color: #5cb85c;
             color: white;
             border: none;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #c9302c;
+            background-color: #4cae4c;
         }
 
         .back-button {
@@ -130,42 +117,25 @@ require_once 'dbh.inc.php';
     </div>
 
     <div class="content">
-        <div class="container">
+        <h4>Change Password</h4>
+        
+        <form action="change_password.inc.php" method="post">
+            <h4>Enter Current Password:</h4>
+            <input type="password" name="current_password" placeholder="Current Password" required>
+            <h4>Enter New Password:</h4>
+            <input type="password" name="new_password" placeholder="New Password" required>
+            <h4>Confirm New Password:</h4>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <button type="submit">Update</button>
+        </form>
 
-            <h3>Enter Product Name for Deletion</h3>
-            
-            <form action="remove_product.inc.php" method="POST">
-                <h4> Men's Products </h4>
-                <select name="prod_id_men">
-                    <option value="not_selected">--Select a product--</option>
-                    <?php
-                    $products = get_all_products_men($pdo);
-                    foreach ($products as $product_item) {
-                        echo "<option value=\"{$product_item['id']}\">{$product_item['prod_name']}</option>";
-                    }
-                    ?>
-                </select>
+        <form action="update_employee_profile.inc.php" method="post">
+            <button type="submit" class="back-button">Back</button>
+        </form>
 
-                <h4>Women's Products </h4>
-                <select name="prod_id_women">
-                    <option value="not_selected">--Select a product--</option>
-                    <?php
-                    $products = get_all_products_women($pdo);
-                    foreach ($products as $product_item) {
-                        echo "<option value=\"{$product_item['id']}\">{$product_item['prod_name']}</option>";
-                    }
-                    ?>
-                </select>
-                <button type="submit">Delete</button>
-            </form>
-
-            <?php
-            check_prod_remove_errors();
-            ?>
-            <form action="../employee_homepage.inc.php" method="post">
-                <button type="button" class="back-button" onclick="window.location.href='../employee_homepage.inc.php'">Back</button>
-            </form>
-        </div>
+        <?php
+        change_password_error();
+        ?>
     </div>
 
 </body>
