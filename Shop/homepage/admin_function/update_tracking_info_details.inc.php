@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f0f8ff; /* Light blue background color */
             margin: 0;
             padding: 0;
             display: flex;
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .sidebar {
             width: 200px;
-            background-color: #333;
+            background-color: #1e90ff;
             padding: 20px;
             height: 100vh;
             position: fixed;
@@ -96,51 +96,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: calc(100% - 220px);
         }
 
-        .container {
-            background: white;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: auto;
-            text-align: center;
+        button {
+            background-color: #007bff; /* Blue button background color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        h3 {
-            margin-bottom: 20px;
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
         }
 
         form {
             margin-bottom: 20px;
         }
 
-        input, select, button {
-            display: block;
-            width: 100%;
+        input[type="text"] {
             padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box;
+            border: 1px solid #ccc;
+            width: 300px;
         }
 
-        button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            cursor: pointer;
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff; /* Blue border color on focus */
         }
 
-        button:hover {
-            background-color: #c9302c;
-        }
-
-        .back-button {
-            background-color: #f0ad4e;
-        }
-
-        .back-button:hover {
-            background-color: #ec971f;
+        h3 {
+            color: #007bff; /* Blue heading color */
         }
     </style>
 </head>
@@ -163,9 +149,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="content">
-        <h3>Pick an order to update tracking info</h3>
 
         <ul>
+        <h3>Pick an order to update tracking info</h3>
             <?php
             if (empty($all_orders)) {
                 echo "<p>No orders to show!</p>";
@@ -197,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>
                 <?php endforeach;
             } ?>
-        </ul>
+       
 
         <?php if ($order_details) : ?>
             <h2>Order Details for Order #<?php echo htmlspecialchars($order_details['order_id']); ?></h2>
@@ -242,6 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button>Back</button>
         </form>
     </div>
+    </ul>
 
 </body>
 

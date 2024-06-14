@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         .sidebar {
             width: 200px;
-            background-color: #333;
+            background-color: #1e90ff;
             padding: 20px;
             height: 100vh;
             position: fixed;

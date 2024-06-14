@@ -21,7 +21,7 @@ require_once 'enter_credentials_view.inc.php';
 
         .sidebar {
             width: 200px;
-            background-color: #333;
+            background-color: #1e90ff;
             padding: 20px;
             height: 100vh;
             position: fixed;

@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .sidebar {
             width: 200px;
-            background-color: #333;
+            background-color: #1e90ff;
             padding: 20px;
             height: 100vh;
             position: fixed;
@@ -147,15 +147,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="content">
-        <h3>Pick an order to update tracking info</h3>
 
         <ul>
+        <h3>Pick an order to update tracking info</h3>
         <?php 
         if (!get_all_orders($pdo)){
             echo "No orders to show!";
         }
         foreach ($all_orders as $order): ?>  <!-- shows a list of all orders made -->
-                <li>
+                
                 <?php 
                     if ($order['delivery_status'] != 'in progress'){
                         if ($delivered_orders_heading == 0){
@@ -164,6 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                 ?>
+                <li>
                     Order ID: <?php echo htmlspecialchars($order['order_id']); ?> <br>
                     User ID: <?php 
                     if ($order['user_id'] == null){
@@ -187,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php endif; ?>
                 </li>
             <?php endforeach; ?>
-        </ul>
+       
 
         <?php if ($order_details): ?>  <!-- shows current or updates order details of an order has been selected -->
             <h2>Order Details for Order #<?php echo htmlspecialchars($order_details['order_id']); ?></h2>
@@ -236,6 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button>Back</button>
         </form>
     </div>
+    </ul>
 
 </body>
 
