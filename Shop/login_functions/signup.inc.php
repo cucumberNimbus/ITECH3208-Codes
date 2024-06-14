@@ -33,13 +33,13 @@
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
 
-            header("Location: ../index.php");
+            header("Location: ../login_signup.inc.php");
             die();
         }
 
         create_user($pdo, $pwd, $username, $email, $delivery_address, $payment_details);
 
-        header("Location: ../index.php?signup=success");
+        header("Location: ../login_signup.inc.php?signup=success");
 
         $pdo = null;
         $stmt = null;

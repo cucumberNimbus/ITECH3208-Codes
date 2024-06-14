@@ -34,7 +34,7 @@
         if ($errors) {
             $_SESSION["errors_login"] = $errors;
 
-            header("Location: ../index.php");
+            header("Location: ../login_signup.inc.php");
             die();
         }
 
