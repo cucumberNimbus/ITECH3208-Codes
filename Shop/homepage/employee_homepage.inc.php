@@ -28,7 +28,7 @@ $low_stock_items = get_low_stock_items($pdo);
 
         .sidebar {
             width: 200px;
-            background-color: #333;
+            background-color: #1e90ff;
             padding: 20px;
             height: 100vh;
             position: fixed;

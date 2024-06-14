@@ -14,26 +14,25 @@ function show_cloth_detail(object $pdo, string $gender) {
         $prod_image_location = $row['prod_image_location'];
         $image_type = $row['image_type'];
         $in_stock = $row['in_stock'];
-
-        echo '<div>';
+        
+        echo '<div class="product-card">';
         echo "<img src='$prod_image_location'>";
         echo "<h3>$prod_name</h3>";
-        echo "<p>$prod_description</p>";
+        echo "<p><strong>$prod_description</strong></p>";
         echo "<p>Price: $$prod_price</p>";
         if ($in_stock < 1){
             echo '<p> Out of stock</p>';
         } else if ($in_stock >= 1 && $in_stock <= 10) {
-            echo '<p> Low stock';
+            echo '<p> Low stock</p>';
         }
- 
         echo '<form action="add_to_cart.inc.php" method="POST">
                 <input type="hidden" name="prod_id" value="'. $prod_id .'">
                 <button type="submit">Add to Cart</button>
-            </form> ';
+            </form>';
         echo '<form action="prod_detail.inc.php" method="POST">
             <input type="hidden" name="prod_id" value="'. $prod_id .'">
             <button type="submit">More Details</button>
-            </form> ';
+            </form>';
         echo '</div>';
     }
 

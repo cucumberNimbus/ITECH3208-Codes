@@ -15,7 +15,7 @@ require_once 'add_to_cart_view.inc.php';
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light blue background color */
+            background-color: white;
             margin: 0;
             padding: 0;
         }
@@ -25,7 +25,7 @@ require_once 'add_to_cart_view.inc.php';
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #007bff; /* Blue navigation background color */
+            background-color: #007bff;
         }
 
         nav ul li {
@@ -41,15 +41,33 @@ require_once 'add_to_cart_view.inc.php';
         }
 
         nav ul li a:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .product-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .product-details {
+            flex: 1;
+            max-width: 50%;
+            padding-left: 20px;
+            box-sizing: border-box;
         }
 
         h3, p {
-            color: #007bff; /* Blue heading and paragraph color */
+            color: #333;
         }
 
         button {
-            background-color: #007bff; /* Blue button background color */
+            background-color: #007bff;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -58,7 +76,7 @@ require_once 'add_to_cart_view.inc.php';
         }
 
         button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -81,18 +99,23 @@ require_once 'add_to_cart_view.inc.php';
         </ul>
     </nav>
     
-    <h3><?php show_product_name($pdo, $_POST["prod_id"]); ?> </h3>  
-    <?php show_prod_image($pdo, $_POST["prod_id"]); ?>
-    <p>Description: <?php show_prod_description($pdo, $_POST["prod_id"]); ?>  </p>
-    <p>Price: $<?php show_prod_price($pdo, $_POST["prod_id"]); ?>  </p>
-    <form action="add_to_cart.inc.php" method="POST">
-        <input type="hidden" name="prod_id" value= "<?php echo $_POST["prod_id"]; ?>" >
-        <button type="submit">Add to Cart</button>
-    </form>
-
-    <?php
-        check_cart_status();
-    ?>
+    <div class="container">
+        <div class="product-image">
+            <?php show_prod_image($pdo, $_POST["prod_id"]); ?>
+        </div>
+        <div class="product-details">
+            <h3><?php show_product_name($pdo, $_POST["prod_id"]); ?></h3>
+            <p>Description: <?php show_prod_description($pdo, $_POST["prod_id"]); ?></p>
+            <p>Price: $<?php show_prod_price($pdo, $_POST["prod_id"]); ?></p>
+            <form action="add_to_cart.inc.php" method="POST">
+                <input type="hidden" name="prod_id" value= "<?php echo $_POST["prod_id"]; ?>">
+                <button type="submit">Add to Cart</button>
+            </form>
+            <?php
+                check_cart_status();
+            ?>
+        </div>
+    </div>
 
 </body>
 </html>

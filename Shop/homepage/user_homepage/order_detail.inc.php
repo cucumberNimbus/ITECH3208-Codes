@@ -24,7 +24,7 @@ require_once 'dbh.inc.php';
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #007bff; 
+            background-color: #1e90ff; 
         }
 
         nav ul li {

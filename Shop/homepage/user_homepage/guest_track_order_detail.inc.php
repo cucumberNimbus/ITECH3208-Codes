@@ -13,7 +13,7 @@
             padding: 20px;
         }
         nav {
-            background-color: #333;
+            background-color: #1e90ff;
             color: white;
             padding: 10px;
             margin-bottom: 20px;
